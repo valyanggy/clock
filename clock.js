@@ -7,19 +7,34 @@ function runClock() {
     var sec = now.getSeconds()
     var ms = now.getMilliseconds()
 
+    // console.log(hour);
+
     var clock = document.querySelector("div.clock")
-        // var hourHand = clock.querySelector("div.hour")
-    var secHand = clock.querySelector("div.second")
+    var hourHand = clock.querySelector("div.hour")
     var minHand = clock.querySelector("div.minute")
+    var secHand = clock.querySelector("div.second")
 
 
-    // var hourRotation = 30 * hour + (0.5 * min)
+
+    var hourRotation = 30 * hour + (0.5 * min)
+    var hourGradation = hour * (1 / 60)
+
     var minRotation = 6 * min + (0.1 * sec)
+    var minGradation = min * (1 / 60)
+
+    var secGradation = sec * (1 / 60)
     var secRotation = 6 * sec + 0.006 * ms
 
-    // hourHand.style.transform = "rotate(" + hourRotation + "deg)"
+    hourHand.style.transform = "rotate(" + hourRotation + "deg)"
+    hourHand.style.opacity = hourGradation + 0.1;
+
+    minHand.style.transform = "rotate(" + minRotation + "deg)";
+    minHand.style.opacity = minGradation;
+
     secHand.style.transform = "rotate(" + secRotation + "deg)"
-    minHand.style.transform = "rotate(" + minRotation + "deg)"
+    secHand.style.opacity = secGradation;
+    // secHand.style.transform = "scale(" + (secGradation * 4) + ")"
+
 
 
     requestAnimationFrame(runClock)
